@@ -68,17 +68,24 @@
 First we define Drive pressure, $drivepress,$
 as the pressure in the compartment which drives eversion.
 This is compartment 1 for the 1-compartment model and compartment 2 for the 2-compartment
-model.  We then test some state variables to determine four boolean
+model.  We also define
+$L_c$, the length of material in the crumple zone between reel and everting
+portion as,
+\beq
+L_c = \theta r_{reel} - 2L
+\eeq
+
+We then test some state variables to determine four boolean
 state transition  conditions:
 \begin{verbatim}
         LoPress = drivepress < Pth1
         HiPress = drivepress > Pth2
-        SlackGro = (th_dot - rReel*2*Ldot) < epsilon
+        SlackExists = Lc > epsilon
         noSlack =  Lc < epsilon
 \end{verbatim}
 
 \texttt{LoPress} and \texttt{HiPress} determine when the eversion process stops and starts
-respectively. \texttt{SlackGro} and \texttt{noSlack} define conditions for when
+respectively. \texttt{SlackExists} and \texttt{noSlack} define conditions for when
 material crumples inside the housing between the reel and the eversion tube.
 
 We then construct a table determining all transitions between the four possible states
@@ -89,18 +96,30 @@ We then construct a table determining all transitions between the four possible 
 \begin{tabular}{c|c|c|c|c}
  To: \\From: &  Growing-Taut   & Growing-Slack   & Stuck-Taut  & Stuck-Slack \\ \hline
              &     0  & 1 & 2 & 3 \\ \hline
-0    &  & SlackGro & LoPress  & LoPress {\bf and} SlackGro \\ \hline
-1    & $L_c < \epsilon$  &   & LoPress \textbf{and} noSlack  &  LoPress \\ \hline
-2    & HiPress    & HiPress \textbf{and} SlackGro &   &  SlackGro \\ \hline
-3    & HiPress \textbf{and} $L_c<\epsilon$ & HiPress &   & \\
+0    &  & SlackExists & LoPress  & LoPress {\bf and} SlackExists \\ \hline
+1    & noSlack  &   & LoPress \textbf{and} noSlack  &  LoPress \\ \hline
+2    & HiPress    & HiPress \textbf{and} SlackExists &   &  SlackExists \\ \hline
+3    & HiPress \textbf{and} noSlack & HiPress &   & \\
 \end{tabular}\caption{4x4 state transition diagram deterimining growing or stuck and
 taut or slack substates.  State in each row makes transitions to
 column state when conditions
 in each cell are met. Blank cells indicating in the same state.}\label{4x4stateTable}
 \end{table}
 
+
+These state transitions are illustrated diagrammatically in Figure \ref{4x4StateDiagram}.
+
+\begin{figure}[h]\centering
+        \includegraphics[width=0.5\textwidth]{4x4StateTransDiag.png}
+        \caption{}\label{4x4StateDiagram}
+\end{figure}
+
+
+
 %  Use name of bibliography files without .bib extension
 %\bibliography{brl}
+
+
 
 \section{Tubing Resistance}
 
