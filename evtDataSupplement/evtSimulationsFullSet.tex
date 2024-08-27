@@ -183,4 +183,34 @@ Threshold Taper  & 0.0000E+00 & +/- 0.0000E+00  (0.0\%)\\
 \caption{Variation in parameter values required to achieve realistic simulations.}
 \end{table}
 
+Finally, Table \ref{tab:beforeAfter}, compares a new average, after this round of Parameter
+tuning with the initial average used to initialize the tuning.
+
+\begin{table}\centering
+\begin{tabular}{l|l|l}\\
+Parameter & initial & post \\ \hline
+ET\_Res\_ratio     & 6.0E-01 & 5.0E-01 *\\
+ET\_RofL\_mode     & constant   & constant   \\
+ET\_radius        & 12.5E-03 & 12.5E-03 \\
+J                & 2.62E-04 & 2.62E-04 \\
+K2drag           & 5.56E+00 & 2.73E+00 *\\
+Kdrag            & 2.11E+00 & 2.93E+00 *\\
+LLine\_SIu        & 1.00E-08 & 1.00E-08 \\
+Lmax             & 0.7 & 0.54 *\\
+PBA\_static       & 1.129E+05 & 1.098E+05 \\
+PHalt\_dyn        & 1.088E+05 & 1.067E+05 \\
+Psource\_SIu      & 1.2582E+05 & 1.2772E+05 \\
+Rsource\_SIu      & 1.3500E+08 & 1.3611E+08 \\
+Tau\_coulomb      & 3.22E-03 & 1.94E-03 *\\
+Threshold Taper  & 0.0000E+00 & 0.0000E+00 \\
+Vhousing\_m3      & 1.26E-03 & 1.26E-03 \\
+et\_MPM           & 3.2E-03 & 3.2E-03 \\
+rReel            & 1.09E-02 & 1.09E-02 \\
+\end{tabular}
+\caption{Comparison of initial starting-point average with post tuning average.
+Physical constants are omitted as they are of course unchanged.
+%Comparing evtParams/InitAvgParams-17-Aug-24.txt to evtParams/AvgPars-27-Aug.txt
+'*' = change is greater than 5\%}\label{tab:beforeAfter}
+\end{table}
+
 \end{document}
